@@ -4,6 +4,32 @@ use strict;
 use warnings;
 use Net::FCP::Tiny;
 
+=head1 NAME
+
+freenet_gauge_ - Wildcard plugin to gauge a single value from Freenet's GetNode info
+
+=head1 SYNOPSIS
+
+    [freenet_gauge_avg_ping]
+    env.title Freenet average ping time
+    env.vlabel time
+    env.info Ping in milliseconds
+    env.graph_info How long it takes to ping our peer nodes in milliseconds on average
+    env.label milliseconds
+    env.what volatile.averagePingTime
+
+    [freenet_gauge_store_size]
+    env.title Freenet store size
+    env.vlabel bytes
+    env.info Store size in bytes
+    env.graph_info How big the local Freenet store is
+    env.label Store size
+    env.what volatile.storeSize
+    env.base 1024
+    env.draw AREA
+
+=cut
+
 my $title      = $ENV{title}      // die "give me a title=";
 my $vlabel     = $ENV{vlabel}     // die "give me a vlabel=";
 my $label      = $ENV{label}      // die "give me a label=";
@@ -11,11 +37,14 @@ my $info       = $ENV{info}       // die "give me a info=";
 my $graph_info = $ENV{graph_info} // die "give me a graph_info=";
 my $what       = $ENV{what}       // die "give me a what=, e.g. what=volatile.runningThreadCount";
 
+my $base       = $ENV{base} // 1000;
+my $draw       = $ENV{draw} // 'LINE2';
+
 given ($ARGV[0]) {
     when ("config") {
         print <<"END";
 graph_title $title
-graph_args --base 1000 --lower-limit 0
+graph_args --base $base --lower-limit 0
 graph_vlabel $vlabel
 graph_category freenet
 graph_info $graph_info
