@@ -48,14 +48,11 @@ WithVolatile=true
 EndMessage
 END
 
-        my %out = (
-            "volatile.allocatedJavaMemory" => 'allocated',
-            "volatile.freeJavaMemory"      => 'free',
-            "volatile.maximumJavaMemory"   => 'maximum',
-            "volatile.usedJavaMemory"      => 'used',
-        );
-        while (my ($var, $label) = each %out) {
-            say "$label.value $info->{$var}";
-        }
+        print <<"END";
+maximum.value   $info->{'volatile.maximumJavaMemory'}
+allocated.value $info->{'volatile.allocatedJavaMemory'}
+used.value      $info->{'volatile.usedJavaMemory'}
+free.value      $info->{'volatile.freeJavaMemory'}
+END
     }
 }
