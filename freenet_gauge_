@@ -1,0 +1,45 @@
+#!/home/v-perlbrew/perl5/perlbrew/bin/perl
+use 5.010;
+use strict;
+use warnings;
+use Net::FCP::Tiny;
+
+my $title      = $ENV{title}      // die "give me a title=";
+my $vlabel     = $ENV{vlabel}     // die "give me a vlabel=";
+my $label      = $ENV{label}      // die "give me a label=";
+my $info       = $ENV{info}       // die "give me a info=";
+my $graph_info = $ENV{graph_info} // die "give me a graph_info=";
+my $what       = $ENV{what}       // die "give me a what=, e.g. what=volatile.runningThreadCount";
+
+given ($ARGV[0]) {
+    when ("config") {
+        print <<"END";
+graph_title $title
+graph_args --base 1000 --lower-limit 0
+graph_vlabel $vlabel
+graph_category freenet
+graph_info $graph_info
+
+count.label $label
+count.type GAUGE
+count.draw LINE2
+count.info $info
+END
+    }
+    default {
+        my $fcp = Net::FCP::Tiny->new(
+            name => 'Freenet Munin Plugin',
+            host => $ENV{FREENET_HOST},
+            port => $ENV{FREENET_PORT},
+        );
+
+        my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
+GetNode
+WithPrivate=false
+WithVolatile=true
+EndMessage
+END
+
+        print "count.value $info->{$what}\n";
+    }
+}
