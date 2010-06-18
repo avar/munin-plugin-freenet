@@ -41,18 +41,28 @@ END
             port => $ENV{FREENET_PORT},
         );
 
-        my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
+        my ($maximum, $allocated, $used, $free) = (0,0,0,0);
+
+        if ($fcp) {
+            my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
 GetNode
 WithPrivate=false
 WithVolatile=true
 EndMessage
 END
+            ($maximum, $allocated, $used, $free) = @$info{qw(
+                volatile.maximumJavaMemory
+                volatile.allocatedJavaMemory
+                volatile.usedJavaMemory
+                volatile.freeJavaMemory
+            )};
+        }
 
         print <<"END";
-maximum.value   $info->{'volatile.maximumJavaMemory'}
-allocated.value $info->{'volatile.allocatedJavaMemory'}
-used.value      $info->{'volatile.usedJavaMemory'}
-free.value      $info->{'volatile.freeJavaMemory'}
+maximum.value   $maximum
+allocated.value $allocated
+used.value      $used
+free.value      $free
 END
     }
 }

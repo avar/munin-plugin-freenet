@@ -31,16 +31,22 @@ END
             port => $ENV{FREENET_PORT},
         );
 
-        my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
+        my ($input, $output) = (0,0);
+
+        if ($fcp) {
+            my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
 GetNode
 WithPrivate=false
 WithVolatile=true
 EndMessage
 END
 
+            ($input, $output) = @$info{qw(volatile.totalInputBytes volatile.totalOutputBytes)};
+        }
+
         print <<"END";
-input.value   $info->{'volatile.totalInputBytes'}
-output.value  $info->{'volatile.totalOutputBytes'}
+input.value   $input
+output.value  $output
 END
     }
 }

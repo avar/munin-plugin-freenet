@@ -33,13 +33,19 @@ END
             port => $ENV{FREENET_PORT},
         );
 
-        my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
+        my $value = 0;
+
+        if ($fcp) {
+            my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
 GetNode
 WithPrivate=false
 WithVolatile=true
 EndMessage
 END
 
-        print "count.value $info->{$what}\n";
+            $value = $info->{$what};
+        }
+
+        print "count.value $value\n";
     }
 }
