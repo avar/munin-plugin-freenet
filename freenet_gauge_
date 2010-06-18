@@ -38,7 +38,7 @@ my $graph_info = $ENV{graph_info} // die "give me a graph_info=";
 my $what       = $ENV{what}       // die "give me a what=, e.g. what=volatile.runningThreadCount";
 
 my $base       = $ENV{base} // 1000;
-my $draw       = $ENV{draw} // 'LINE2';
+my $draw       = $ENV{draw} // 'LINE';
 
 given ($ARGV[0]) {
     when ("config") {
@@ -51,7 +51,7 @@ graph_info $graph_info
 
 count.label $label
 count.type GAUGE
-count.draw LINE2
+count.draw LINE
 count.info $info
 END
     }

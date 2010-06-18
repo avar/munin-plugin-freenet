@@ -15,22 +15,22 @@ graph_info The Java memory use of Freenet
 
 maximum.label maximum
 maximum.type GAUGE
-maximum.draw LINE2
+maximum.draw LINE
 maximum.info Maximum Java memory use
 
 allocated.label allocated
 allocated.type GAUGE
-allocated.draw LINE2
+allocated.draw LINE
 allocated.info Java allocated memory
 
 used.label used
 used.type GAUGE
-used.draw LINE2
+used.draw LINE
 used.info Used Java memory
 
 free.label free
 free.type GAUGE
-free.draw LINE2
+free.draw LINE
 free.info Free Java memory
 END
     }

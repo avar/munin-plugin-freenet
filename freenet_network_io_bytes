@@ -15,12 +15,12 @@ graph_info The total I/O of Freenet in bytes for this session
 
 input.label input
 input.type GAUGE
-input.draw LINE2
+input.draw LINE
 input.info Input
 
 output.label output
 output.type GAUGE
-output.draw LINE2
+output.draw LINE
 output.info Output
 END
     }

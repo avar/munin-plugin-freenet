@@ -15,7 +15,7 @@ graph_info FIXME GRAPH_INFO
 
 count.label FIXME LABEL
 count.type GAUGE
-count.draw LINE2
+count.draw LINE
 count.info FIXME INFO
 END
     }

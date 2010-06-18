@@ -15,32 +15,32 @@ graph_info The I/O rate of Freenet in bytes per second
 
 input.label input
 input.type GAUGE
-input.draw LINE2
+input.draw LINE
 input.info Input
 
 output.label output
 output.type GAUGE
-output.draw LINE2
+output.draw LINE
 output.info Output
 
 input_recent.label recent input
 input_recent.type GAUGE
-input_recent.draw LINE2
+input_recent.draw LINE
 input_recent.info Recent input
 
 output_recent.label recent output
 output_recent.type GAUGE
-output_recent.draw LINE2
+output_recent.draw LINE
 output_recent.info Recent output
 
 input_average.label average input
 input_average.type GAUGE
-input_average.draw LINE2
+input_average.draw LINE
 input_average.info Average input over this session
 
 output_average.label average output
 output_average.type GAUGE
-output_average.draw LINE2
+output_average.draw LINE
 output_average.info Average output over this session
 END
     }
