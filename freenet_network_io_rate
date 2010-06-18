@@ -76,8 +76,8 @@ END
 input.value           $input
 output.value          $output
 
-input_rec.value       $input_rec
-output_rec.value      $output_rec
+input_recent.value    $input_rec
+output_recent.value   $output_rec
 
 input_average.value   $input_average
 output_average.value  $output_average
