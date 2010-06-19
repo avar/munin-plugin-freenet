@@ -6,39 +6,45 @@ use Net::FCP::Tiny;
 
 given ($ARGV[0]) {
     when ("config") {
-        print <<END;
+        print <<"END";
 graph_title Freenet I/O rate
 graph_args --base 1024 --lower-limit 0
-graph_vlabel bytes/sec
+graph_vlabel bytes per \${graph_period} input (-) / output (+)
 graph_category freenet
 graph_info The I/O rate of Freenet in bytes per second
 
+input.graph no
 input.label input
 input.type GAUGE
 input.draw LINE
 input.info Input
 
+output.negative input
 output.label output
 output.type GAUGE
 output.draw LINE
 output.info Output
 
-input_recent.label recent input
+input_recent.graph no
+input_recent.label recent
 input_recent.type GAUGE
 input_recent.draw LINE
 input_recent.info Recent input
 
-output_recent.label recent output
+output_recent.negative input_recent
+output_recent.label recent
 output_recent.type GAUGE
 output_recent.draw LINE
 output_recent.info Recent output
 
-input_average.label average input
+input_average.graph no
+input_average.label average
 input_average.type GAUGE
 input_average.draw LINE
 input_average.info Average input over this session
 
-output_average.label average output
+output_average.negative input_average
+output_average.label average
 output_average.type GAUGE
 output_average.draw LINE
 output_average.info Average output over this session

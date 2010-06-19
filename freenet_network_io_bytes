@@ -6,21 +6,23 @@ use Net::FCP::Tiny;
 
 given ($ARGV[0]) {
     when ("config") {
-        print <<END;
+        print <<"END";
 graph_title Freenet total I/O
 graph_args --base 1024 --lower-limit 0
-graph_vlabel bytes
+graph_vlabel bytes per \${graph_period} input (-) / output (+)
 graph_category freenet
 graph_info The total I/O of Freenet in bytes for this session
 
 input.label input
 input.type GAUGE
 input.draw LINE
+input.graph no
 input.info Input
 
-output.label output
+output.label total I/O
 output.type GAUGE
 output.draw LINE
+output.negative input
 output.info Output
 END
     }
