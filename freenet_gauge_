@@ -10,6 +10,19 @@ freenet_gauge_ - Wildcard plugin to gauge a single value from Freenet's GetNode 
 
 =head1 SYNOPSIS
 
+This is a skeleton plugin that allows you to make a simple graph of
+any value retrieved with FCP's C<GetNode> call.
+
+=head1 SYNOPSIS
+
+    [freenet_gauge_threads]
+    env.title Freenet Java thread count
+    env.vlabel threads
+    env.info Number of threads
+    env.graph_info How many threads Freenet is using
+    env.label threads
+    env.what volatile.runningThreadCount
+
     [freenet_gauge_avg_ping]
     env.title Freenet average ping time
     env.vlabel time
@@ -67,7 +80,7 @@ END
         if ($fcp) {
             my $info = $fcp->array2hash($fcp->send_msg(<<'END'));
 GetNode
-WithPrivate=false
+WithPrivate=true
 WithVolatile=true
 EndMessage
 END
