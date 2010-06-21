@@ -17,3 +17,7 @@ These plugins are maintained
 [Ævar Arnfjörð Bjarmason](http://github.com/avar/munin-plugin-freenet),
 if you need something else graphed hack it up and submit a pull
 request.
+
+This software is available under the terms of the
+[DWTFYWWI](http://github.com/avar/DWTFYWWI/blob/master/DWTFYWWI)
+license.
