@@ -1,4 +1,4 @@
-These [http://munin-monitoring.org](munin) plugins allow you to graph
+These [munin](http://munin-monitoring.org) plugins allow you to graph
 various things happening in a [Freenet](http://freenetproject.org/)
 node. To run them you need perl 5.10.0 or later and
 [Net::FCP::Tiny](http://search.cpan.org/dist/Net-FCP-Tiny/) from the
