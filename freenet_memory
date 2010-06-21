@@ -4,6 +4,12 @@ use strict;
 use warnings;
 use Net::FCP::Tiny;
 
+=head1 NAME
+
+freenet_memory - Graph Freenet's memory use
+
+=cut
+
 given ($ARGV[0]) {
     when ("config") {
         print <<END;

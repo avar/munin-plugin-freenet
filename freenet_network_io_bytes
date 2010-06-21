@@ -4,6 +4,12 @@ use strict;
 use warnings;
 use Net::FCP::Tiny;
 
+=head1 NAME
+
+freenet_network_io_bytes - Graph Freenet's network I/O throughput
+
+=cut
+
 given ($ARGV[0]) {
     when ("config") {
         print <<"END";
